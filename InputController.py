@@ -1,3 +1,4 @@
+from Function import dict_temp_from_temps
 from UI import UI_input, out_temps, max_temp
 
 need_temp = 0
@@ -8,18 +9,14 @@ def input_temp():
         temps.append(t)
     return temps
 
-def out_temp_day(temps, dict):
-    global need_temp
-    dict = {1:"Понедельник", 2:"Вторник", 3:"Среда", 4:"Четверг", 5:"Пятница", 6:"Суббота", 7:"Воскресенье"}
 
-    for i in dict:
-        t_day = out_temps()
-        if t_day == 1:
-            for i in range (len(temps)):
-                need_temp = temps[i]
+def out_temp_day(temps, name_of_day):
+    dict_temps = dict_temp_from_temps(temps)
+    if name_of_day in dict_temps.keys():
+        return dict_temps[name_of_day]
+    else:
+        return "Такого дня нет"
 
-        print(f"В {dict.get(i)} была температура", {need_temp})
-    return temps, dict
 
 
 def max_temp_of_weak(temps):
